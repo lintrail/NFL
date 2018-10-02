@@ -1,0 +1,30 @@
+# Which Running Back to Pick
+
+### Problem:
+My goal is to predict if NFL football teams with starting running backs that played for colleges with dominant football programs have offenses that perform better than other teams.
+
+### Client:
+My clients are the player acquition decision makers for NFL teams.  This insight will give the clients a data-driven model to use for deciding who to acquire in a running back to help the offense become more successful. 
+
+### Data:
+* Associated Press (*AP Poll*) end of season Top 25 rankings in NCAA Division 1 football from the past 20 years.
+    + (ap_final_rankings)
+  
+* Running Back's stats 
+    + (Career_Stats_Rushing)
+  
+* Running Back's college and graduation information
+    + (Basic_Stats)
+
+* NFL teams rushing statistics and overall performance
+    + (team_season_rushing_stats)
+
+### Outline:
+1. Clean up data using data wrangling procedures. 
+2. Identify starting running backs for each team for the last 20 years
+3. Determine if the running backs' college team was a Top 25 team when he played.
+4. Compare the running backs' stats with their teams' rushing stats to determine level of contribution ratio. $Player Contribution = RB Rushing /Team Rushing$
+5. Identify how each team performed prior and post acquition. 
+
+
+
