@@ -1,4 +1,4 @@
-# Which Running Back to Pick
+# Does it really matter?
 
 ### Problem:
 My goal is to predict if NFL football teams with starting running backs that played for colleges with dominant football programs have offenses that perform better than other teams.
@@ -8,7 +8,7 @@ My clients are the player acquition decision makers for NFL teams.  This insight
 
 ### Data:
 * Associated Press (*AP Poll*) end of season Top 25 rankings in NCAA Division 1 football from the past 20 years.
-    + (ap_final_rankings)
+    + (ap_final_ranks)
   
 * Running Back's stats 
     + (Career_Stats_Rushing)
