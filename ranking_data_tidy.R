@@ -1,59 +1,30 @@
 library(dplyr)
 library(tidyr)
-rankings_df <- ap_final_ranks
 
 # Making the data tidy
-rankings_df <- ap_final_ranks %>% 
-  gather(Year, College, ends_with("poll"), ends_with("Record")) 
+rankings_df_college <- ap_final_ranks %>% 
+  select(Rank, ends_with("poll")) %>% 
+  gather(Year, College, -Rank )
 
+rankings_df_record <- ap_final_ranks %>% 
+  select(Rank, ends_with("Record")) %>% 
+  gather(Year, Record, -Rank)
 
-# Deleting prefix of observations in Year Variable
-rankings_df$Year <- gsub("X", "", rankings_df$Year)
+# Deleting prefix & suffix of observations in Year variables 
+rankings_df_college$Year <- gsub(pattern = ".final.AP.poll", replacement = "", x = rankings_df_college$Year)
+rankings_df_college$Year <- gsub(pattern = "X", replacement = "", x = rankings_df_college$Year)
 
-head(rankings_df)
-tail(rankings_df)
+rankings_df_record$Year <- gsub(".Record", "", rankings_df_record$Year)
+rankings_df_record$Year <- gsub("X", "", rankings_df_record$Year)
 
-# Separating the Year column to make observations nice
-rankings_df <- rankings_df %>% 
-  separate(Year, c("Season", "Year"), "(.final.AP.poll$)")
+# Merging College df and Record df into one df
+rankings_df <- left_join(rankings_df_college, rankings_df_record, by = c("Rank", "Year"))
 
-head(rankings_df)
-tail(rankings_df)
-
-
-# Delete Year variable
-rankings_df$Year <- NULL
-
-# Reorder the columns
-rankings_df <- rankings_df[,c("Season","Rank","College")]
-
-head(rankings_df)
-str(rankings_df)
-# Change " / " to " - " for all Record observations
-rankings_df$College <- gsub("/", "-", rankings_df$College)
+# Change " / " to " - " for all Year observations
+rankings_df$Record <- gsub("/", "-", rankings_df$Record)
 
 head(rankings_df)
 tail(rankings_df)
-rankings_df
 
 
 
-
-
-
-
-rankings2_df <- ap_final_ranks %>% 
-  gather( Year, College, ends_with("poll")) %>% 
-  gather(Season, Record, ends_with("Record"))
-
-head(rankings2_df)
-tail(rankings2_df)
-str(rankings2_df)
-rankings2_df
-
-
-
-
-ap_final_ranks %>% 
-  gather(Year, College, -Rank) %>% 
-  lapply()
