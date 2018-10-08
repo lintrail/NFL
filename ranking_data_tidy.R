@@ -1,6 +1,9 @@
 library(dplyr)
 library(tidyr)
 
+# Read in original data set
+rankings_df <- read_csv("ap_final_ranks.csv")
+
 # Making the data tidy
 rankings_df_college <- ap_final_ranks %>% 
   select(Rank, ends_with("poll")) %>% 
